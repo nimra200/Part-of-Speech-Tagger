@@ -1,16 +1,16 @@
-# The tagger.py starter code for CSC384 A4.
-# Currently reads in the names of the training files, test file and output file,
-# and calls the tagger (which you need to implement)
+
+# Currently reads in the names of the training files, test file and output file
+
 import os
 import sys
 import numpy as np 
 import pandas as pd 
-from IPython.display import display # TODO: REMOVE
+from IPython.display import display 
 from collections import Counter 
 EPSILON = 0.001
 def tag(training_list, test_file, output_file):
-    # Tag the words from the untagged input file and write them into the output file.
-    # Doesn't do much else beyond that yet.
+    # Tag the words from the untagged input file and write them into the output file. Store information about examples seen in training files.
+    
 
     for txt in training_list: 
         tags = set()  
@@ -59,7 +59,7 @@ def tag(training_list, test_file, output_file):
     input_file = open(test_file, "r") 
     output = open(output_file, "w")
     sentence = []
-    #TODO: what if word has never been seen before?
+   
     for line in input_file.readlines():
         info = line.strip().split()
         word = info[0]
@@ -78,16 +78,7 @@ def tag(training_list, test_file, output_file):
             sentence = [] 
     input_file.close()
     output.close()
-    """
-    input_file = open(test_file, "r") 
-    output = open(output_file, "w")
-    for line in input_file.readlines():
-        info = line.strip().split()
-        word = info[0]
-        
-    input_file.close()
-    output.close()
-    """
+
 
 def prob_t2_given_t1(t2, t1, tag_pairs, tags):
     pair_occurrences = Counter(tag_pairs)
