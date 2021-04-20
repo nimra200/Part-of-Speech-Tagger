@@ -1,4 +1,4 @@
-def viterbi(words, tags, pi, A, B):
+def viterbi_algorithm(words, tags, pi, A, B):
     """ The viterbi algorithm finds the most likely sequence of part-of-speech tags for a sentence.
     words : a list of words that form one sentence
     tags : a list of unique tags in training files
