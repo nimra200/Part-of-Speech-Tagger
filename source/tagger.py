@@ -8,7 +8,7 @@ import pandas as pd
 from IPython.display import display 
 from collections import Counter 
 from viterbi import *
-from transition-probabilities import * 
+from probabilities import * 
 EPSILON = 0.001
 def tag(training_list, test_file, output_file):
     # Tag the words from the untagged input file and write them into the output file. Store information about examples seen in training files.
