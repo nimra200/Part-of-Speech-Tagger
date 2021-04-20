@@ -52,7 +52,7 @@ def tag(training_list, test_file, output_file):
             for j, tag in enumerate(list(tags)):
                 em_matrix[i][j] = prob_word_given_tag(word, tag, word_tag_freq, tags)
         em_df = pd.DataFrame(em_matrix, columns = list(tags), index=list(words))
-        display(em_df) #TODO: REMOVE IMPORT 
+        display(em_df) 
         trans_df = pd.DataFrame(trans_matrix, columns = list(tags), index=list(tags))
         display(trans_df)
     # read test_file
@@ -67,7 +67,7 @@ def tag(training_list, test_file, output_file):
         if word == "." or word == "!" or word == "?":
             prob_trellis, path_trellis = viterbi(sentence, list(tags), initial_probs, trans_matrix, em_matrix)
             prob_df = pd.DataFrame(prob_trellis, columns = sentence, index=list(tags))
-            display(prob_df) #TODO REMOVE
+            display(prob_df) 
             path_df = pd.DataFrame(path_trellis, columns = sentence, index=list(tags))
             display(path_df)
             tag_seq = backward_pass(prob_trellis, path_trellis, list(tags), sentence)
@@ -139,7 +139,7 @@ def viterbi(words, tags, pi, A, B):
     # for states X_2 to X_T, find each current state's most likely prior state x
     for w in range(1, len(words)):
         sum = 0
-        #TODO: what if there was a tag that we never saw in the training?
+        
         for t in range(len(tags)):
             em_prob = emission_df.loc[words[w], tags[t]]
             # find the most likely tag for the previous word 
