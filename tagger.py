@@ -37,7 +37,7 @@ def tag(training_list, test_file, output_file):
                 prev = None # split up file by sentence 
             else:
                 prev = curr
-        #initial_probs = np.zeros((1, len(tags)), dtype='float32')
+        
         initial_probs = []
         trans_matrix = np.zeros((len(tags), len(tags)), dtype='float32')
         for i, tag1 in enumerate(list(tags)):
@@ -88,7 +88,7 @@ def prob_t2_given_t1(t2, t1, tag_pairs, tags):
 		    tag_1_pairs += pair_occurrences[pair]
     
     pairs_of_tag1_tag2 = pair_occurrences[(t1, t2)]
-    #if t1 != "<S>":
+    
     # smoothing avoids 0 probabilities
     return (pairs_of_tag1_tag2 + EPSILON) / (tag_1_pairs + (EPSILON * len(tags)))
     """
@@ -149,7 +149,7 @@ def viterbi(words, tags, pi, A, B):
                 # recall: log(a*b) = log a + log b
                 #print(prob_trellis[tag][w-1],A[tag][t], em_prob )
                 prod = prob_trellis[tag][w-1] * A[tag][t] * em_prob
-                #prod =  np.log(prob_trellis[tag][w-1]) + np.log(A[tag][t]) + np.log(em_prob)
+                
                 print("product is: {}\n".format(prod))
                 if prod > max_prod:
                     max_prod = prod
