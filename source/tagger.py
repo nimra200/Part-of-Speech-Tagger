@@ -8,6 +8,7 @@ import pandas as pd
 from IPython.display import display 
 from collections import Counter 
 from viterbi import *
+from transition-probabilities import * 
 EPSILON = 0.001
 def tag(training_list, test_file, output_file):
     # Tag the words from the untagged input file and write them into the output file. Store information about examples seen in training files.
@@ -79,40 +80,6 @@ def tag(training_list, test_file, output_file):
             sentence = [] 
     input_file.close()
     output.close()
-
-
-def prob_t2_given_t1(t2, t1, tag_pairs, tags):
-    pair_occurrences = Counter(tag_pairs)
-    tag_1_pairs = 0
-    for pair in pair_occurrences:
-	    if pair[0] == t1:
-		    tag_1_pairs += pair_occurrences[pair]
-    
-    pairs_of_tag1_tag2 = pair_occurrences[(t1, t2)]
-    
-    # smoothing avoids 0 probabilities
-    return (pairs_of_tag1_tag2 + EPSILON) / (tag_1_pairs + (EPSILON * len(tags)))
-    """
-    else:
-        # no smoothing for initial probabilities.
-        # We need 0 probabilities to show a sentence can't begin with punctuation
-        if tag_1_pairs > 0:
-            return pairs_of_tag1_tag2 / tag_1_pairs
-        else:
-             return 0
-    """
-
-def prob_word_given_tag(word, tag, word_tag_frequencies, tags):
-    if (word,tag) in word_tag_frequencies:
-        word_tag_count = word_tag_frequencies[(word,tag)]
-    else:
-        word_tag_count = 0
-    tag_count = 0
-    for pair in word_tag_frequencies:
-        if pair[1] == tag:
-            tag_count += word_tag_frequencies[pair]
-    
-    return  (word_tag_count + EPSILON) / (tag_count + (EPSILON * len(tags)))
 
 
 
