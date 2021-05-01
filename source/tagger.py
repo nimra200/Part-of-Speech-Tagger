@@ -85,10 +85,8 @@ def tag(training_list, test_file, output_file):
 
 
 if __name__ == '__main__':
-    # Run the tagger function.
-    print("Starting the tagging process.")
-
-    # Tagger expects the input call: "python3 tagger.py -d <training files> -t <test file> -o <output file>"
+    
+    # Tagger expects "python3 tagger.py -d <training files> -t <test file> -o <output file>"
     parameters = sys.argv
     training_list = parameters[parameters.index("-d")+1:parameters.index("-t")]
     test_file = parameters[parameters.index("-t")+1]
